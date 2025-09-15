@@ -60,7 +60,7 @@ Implementation notes:
 
 Limitations / Future Enhancements:
   - No markdown heading bias yet (could anchor section starts at headings)
-  - Sentence segmentation fallback uses simple period split; can be upgraded
+        - Sentence segmentation fallback now uses NLTK sent_tokenize by default.
   - Could add desired target section count iterative optimization
 
 """
@@ -70,6 +70,12 @@ import json
 import math
 import statistics
 from pathlib import Path
+import nltk
+try:
+    # punkt is required for sent_tokenize
+    nltk.data.find('tokenizers/punkt')
+except LookupError:  # download quietly
+    nltk.download('punkt', quiet=True)
 from typing import List, Dict, Any
 
 try:
@@ -163,10 +169,11 @@ def build_sections(paragraphs: List[str], boundaries: List[int], max_tokens: int
             for local_idx,p in enumerate(para_slice):
                 p_tokens = estimate_tokens(p, precise=precise_tokens)
                 if p_tokens > max_tokens:
-                    sentences=[s.strip() for s in p.split('.') if s.strip()]
+                    from nltk.tokenize import sent_tokenize
+                    sentences = [s.strip() for s in sent_tokenize(p) if s.strip()]
                     sent_acc=[]; sent_tok=0
                     for s in sentences:
-                        s_full = s + ('' if s.endswith('.') else '.')
+                        s_full = s
                         st=estimate_tokens(s_full, precise=precise_tokens)
                         if sent_tok + st > max_tokens and sent_acc:
                             chunk=' '.join(sent_acc)
