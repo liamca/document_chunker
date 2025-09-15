@@ -37,6 +37,7 @@ By default the script uses `tiktoken` (encoding `cl100k_base`) if installed for 
 ## Installation
 ```bash
 pip install sentence-transformers tiktoken nltk
+nltk.download('punkt')
 ```
 
 ## Basic Usage
@@ -66,11 +67,18 @@ python chunk_document_sections.py \
 4. A new boundary is inserted when similarity drops below threshold or token limit would be exceeded.
 5. After initial sections are built, an adaptive packing pass merges adjacent small sections without breaching `--max-tokens`.
 
-## Sentence-Level Fallback
-If an individual paragraph on its own exceeds the token cap:
-- The paragraph is naïvely split on periods (`.`) into sentence-like fragments.
-- Fragments are accumulated into sub-chunks under the limit.
-(You can upgrade this to a robust sentence splitter like spaCy if needed.)
+## Sentence-Level Fallback (NLTK)
+If an individual paragraph on its own exceeds the token cap it is split into sentences using `nltk.sent_tokenize`:
+- Install if needed:
+  ```bash
+  pip install nltk
+  python - <<'PY'
+  import nltk
+  nltk.download('punkt')
+  PY
+  ```
+- Sentences are greedily packed into sub-chunks without crossing `--max-tokens`.
+- Very long single sentences (rare) may still exceed the cap; they are emitted as-is.
 
 ## Auto Smoothing Heuristic
 When `--auto-smooth` is used:
