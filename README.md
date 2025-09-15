@@ -1,4 +1,4 @@
-# Semantic Chunking
+# Semantic Chunker
  Utility
 Semantic chunking utility that converts a plain text / markdown document into coherent sections sized for LLM ingestion.
 
