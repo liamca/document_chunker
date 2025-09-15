@@ -91,13 +91,6 @@ Console output includes number of paragraphs, chosen window, raw boundaries coun
 - 0 success
 - Non‑zero: dependency/import or runtime error
 
-## Extending
-Ideas for enhancement:
-- Markdown heading anchoring (force boundary at headings, merge surrounding context)
-- Smarter sentence segmentation (spaCy / nltk)
-- Target chunk count feedback loop (optimize smoothing + threshold)
-- Thematic labeling (embedding centroid keywords per chunk)
-
 ## License / Attribution
 Uses models provided by `sentence-transformers` (see that project's licensing). Ensure compliance with any model-specific terms.
 
