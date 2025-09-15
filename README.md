@@ -37,7 +37,10 @@ By default the script uses `tiktoken` (encoding `cl100k_base`) if installed for 
 ## Installation
 ```bash
 pip install sentence-transformers tiktoken nltk
+python - <<'PY'
+import nltk
 nltk.download('punkt')
+PY
 ```
 
 ## Basic Usage
@@ -69,14 +72,6 @@ python chunk_document_sections.py \
 
 ## Sentence-Level Fallback (NLTK)
 If an individual paragraph on its own exceeds the token cap it is split into sentences using `nltk.sent_tokenize`:
-- Install if needed:
-  ```bash
-  pip install nltk
-  python - <<'PY'
-  import nltk
-  nltk.download('punkt')
-  PY
-  ```
 - Sentences are greedily packed into sub-chunks without crossing `--max-tokens`.
 - Very long single sentences (rare) may still exceed the cap; they are emitted as-is.
 
