@@ -1,6 +1,6 @@
 # Semantic Chunker
  Utility
-Semantic chunking utility that converts a plain text / markdown document into coherent sections sized for LLM ingestion.
+Semantic chunking utility that converts a plain text / markdown document into coherent sections sized for RAG (Retrieval Augmented Generation) based systems and LLM processing.
 
 ## What It Does
 Given a text file, the script:
