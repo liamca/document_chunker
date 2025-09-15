@@ -36,7 +36,7 @@ By default the script uses `tiktoken` (encoding `cl100k_base`) if installed for 
 
 ## Installation
 ```bash
-pip install sentence-transformers tiktoken
+pip install sentence-transformers tiktoken nltk
 ```
 
 ## Basic Usage
