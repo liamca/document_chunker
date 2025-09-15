@@ -1,5 +1,5 @@
-# chunk_document_sections.py
-
+# Semantic Chunking
+ Utility
 Semantic chunking utility that converts a plain text / markdown document into coherent sections sized for LLM ingestion.
 
 ## What It Does
