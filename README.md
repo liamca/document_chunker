@@ -101,5 +101,3 @@ Ideas for enhancement:
 ## License / Attribution
 Uses models provided by `sentence-transformers` (see that project's licensing). Ensure compliance with any model-specific terms.
 
----
-Generated utility README for quick integration into preprocessing / RAG pipelines.
